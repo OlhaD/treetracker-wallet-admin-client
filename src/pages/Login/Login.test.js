@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 import { TextField } from "@mui/material";
 import Login from "./Login";
 
@@ -22,14 +22,16 @@ describe("Login component", () => {
   });
 
   it("renders without crashing", () => {
-    const wrapper = shallow(<Login />);
-    expect(wrapper.exists()).toBe(true);
+    const { container } = render(<Login />);
+    expect(container).toBeInTheDocument();
   });
 
   it("renders the wallet and password input fields", () => {
-    const wrapper = shallow(<Login />);
-    expect(wrapper.find(TextField).length).toBe(2);
-    expect(wrapper.find(TextField).at(0).props().name).toBe("wallet");
-    expect(wrapper.find(TextField).at(1).props().name).toBe("password");
+    const { getByLabelText } = render(<Login />);
+    const walletInput = getByLabelText("Wallet");
+    const passwordInput = getByLabelText("Password");
+
+    expect(walletInput).toBeInTheDocument();
+    expect(passwordInput).toBeInTheDocument();
   });
 });

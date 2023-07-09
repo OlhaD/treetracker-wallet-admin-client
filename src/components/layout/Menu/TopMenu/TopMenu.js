@@ -13,7 +13,11 @@ const TopMenu = ({ handleDrawerOpen, open }) => {
   const logoutHandler = () => authContext.logout();
 
   return (
-    <AppBarStyled position="fixed" open={open}>
+    <AppBarStyled
+      position="fixed"
+      open={open}
+      data-testid="app-bar-styled-component"
+    >
       <ToolbarStyled>
         <FlexDiv>
           <IconButton
@@ -28,7 +32,12 @@ const TopMenu = ({ handleDrawerOpen, open }) => {
           >
             <MenuIcon />
           </IconButton>
-          <LogoStyled variant="h6" noWrap component="div">
+          <LogoStyled
+            variant="h6"
+            noWrap
+            component="div"
+            data-testid="logo-styled-component"
+          >
             <IconLogo />
           </LogoStyled>
         </FlexDiv>
@@ -37,6 +46,7 @@ const TopMenu = ({ handleDrawerOpen, open }) => {
             color="inherit"
             style={{ cursor: "pointer" }}
             onClick={logoutHandler}
+            data-testid="logout-icon-component"
           ></LogoutIcon>
         </div>
       </ToolbarStyled>

@@ -1,38 +1,44 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 import { Alert } from "@mui/material";
 import ErrorMessage from "./ErrorMessage";
 
 describe("ErrorMessage component", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<ErrorMessage message="" onClose={() => {}} />);
-    expect(wrapper.exists()).toBe(true);
+    const { container } = render(
+      <ErrorMessage message="" onClose={() => {}} />
+    );
+    expect(container).toBeInTheDocument();
   });
 
   it("renders the Alert component with the correct severity", () => {
-    const wrapper = shallow(<ErrorMessage message="" onClose={() => {}} />);
-    const alertComponent = wrapper.find(Alert);
+    const { getByRole } = render(
+      <ErrorMessage message="" onClose={() => {}} />
+    );
+    const alertComponent = getByRole("alert");
 
-    expect(alertComponent).toHaveLength(1);
-    expect(alertComponent.props().severity).toBe("error");
+    expect(alertComponent).toBeInTheDocument();
+    expect(alertComponent).toHaveAttribute("severity", "error");
   });
 
   it("displays the provided error message", () => {
     const message = "An error occurred.";
-    const wrapper = shallow(
+    const { getByText } = render(
       <ErrorMessage message={message} onClose={() => {}} />
     );
-    const alertComponent = wrapper.find(Alert);
+    const alertComponent = getByText(message);
 
-    expect(alertComponent.props().children).toBe(message);
+    expect(alertComponent).toBeInTheDocument();
   });
 
   it("calls the onClose function when the Alert is closed", () => {
     const onCloseMock = jest.fn();
-    const wrapper = shallow(<ErrorMessage message="" onClose={onCloseMock} />);
-    const alertComponent = wrapper.find(Alert);
+    const { getByRole } = render(
+      <ErrorMessage message="" onClose={onCloseMock} />
+    );
+    const alertComponent = getByRole("alert");
 
-    alertComponent.props().onClose();
+    alertComponent.click();
 
     expect(onCloseMock).toHaveBeenCalledTimes(1);
   });

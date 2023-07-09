@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 import App from "./App";
 
 jest.mock("./utils/apiClient", () => ({
@@ -8,22 +8,21 @@ jest.mock("./utils/apiClient", () => ({
 
 describe("App component", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.exists()).toBe(true);
+    render(<App />);
   });
 
   it("renders the Router component", () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.find("BrowserRouter")).toHaveLength(1);
+    const { getByTestId } = render(<App />);
+    expect(getByTestId("router-component")).toBeInTheDocument();
   });
 
   it("renders the Layout component", () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.find("Layout")).toHaveLength(1);
+    const { getByTestId } = render(<App />);
+    expect(getByTestId("layout-component")).toBeInTheDocument();
   });
 
   it("renders the ClientRoutes component", () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.find("ClientRoutes")).toHaveLength(1);
+    const { getByTestId } = render(<App />);
+    expect(getByTestId("client-routes-component")).toBeInTheDocument();
   });
 });

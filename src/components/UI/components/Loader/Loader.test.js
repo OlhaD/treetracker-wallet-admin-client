@@ -1,24 +1,26 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 import { CircularProgress } from "@mui/material";
 import { LoaderGrid } from "./LoaderStyled";
 import { Loader } from "./Loader";
 
 describe("Loader component", () => {
   it("renders without crashing", () => {
-    const wrapper = shallow(<Loader />);
-    expect(wrapper.exists()).toBe(true);
+    const { container } = render(<Loader />);
+    expect(container).toBeInTheDocument();
   });
 
   it("renders the LoaderGrid component", () => {
-    const wrapper = shallow(<Loader />);
-    const loaderGridComponent = wrapper.find(LoaderGrid);
-    expect(loaderGridComponent).toHaveLength(1);
+    const { getByTestId } = render(<Loader />);
+    const loaderGridComponent = getByTestId("loader-grid-component");
+    expect(loaderGridComponent).toBeInTheDocument();
   });
 
   it("renders the CircularProgress component", () => {
-    const wrapper = shallow(<Loader />);
-    const circularProgressComponent = wrapper.find(CircularProgress);
-    expect(circularProgressComponent).toHaveLength(1);
+    const { getByTestId } = render(<Loader />);
+    const circularProgressComponent = getByTestId(
+      "circular-progress-component"
+    );
+    expect(circularProgressComponent).toBeInTheDocument();
   });
 });

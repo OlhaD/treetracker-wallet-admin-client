@@ -1,4 +1,4 @@
-import { mount } from "enzyme";
+import { render } from "@testing-library/react";
 import React from "react";
 import Layout from "./Layout";
 import { StyledContent } from "./LayoutStyled";
@@ -16,7 +16,7 @@ describe("Layout component", () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = mount(
+    wrapper = render(
       <ThemeProvider theme={theme}>
         <Router>
           <Layout>
@@ -32,10 +32,10 @@ describe("Layout component", () => {
   });
 
   it("should render Menu component", () => {
-    expect(wrapper.find(Menu)).toHaveLength(1);
+    expect(wrapper.getByTestId("menu-component")).toBeInTheDocument();
   });
 
   it("should render StyledContent component", () => {
-    expect(wrapper.find(StyledContent)).toHaveLength(1);
+    expect(wrapper.getByTestId("styled-content-component")).toBeInTheDocument();
   });
 });

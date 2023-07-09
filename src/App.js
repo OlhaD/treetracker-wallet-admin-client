@@ -10,8 +10,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <AuthProvider>
-          <ClientRoutes>
-            <Layout></Layout>
+          <ClientRoutes data-testid="client-routes-component">
+            <Layout data-testid="layout-component"></Layout>
           </ClientRoutes>
         </AuthProvider>
       </Router>

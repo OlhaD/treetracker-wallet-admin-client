@@ -1,4 +1,4 @@
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 import React from "react";
 import Menu from "./Menu";
 import MenuItem from "./MenuItem/MenuItem";
@@ -8,7 +8,7 @@ describe("Menu component", () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(
+    wrapper = render(
       <Menu>
         <div>Test</div>
       </Menu>
@@ -20,14 +20,16 @@ describe("Menu component", () => {
   });
 
   it("should render MenuItem component", () => {
-    expect(wrapper.find(MenuItem)).toHaveLength(1);
+    expect(wrapper.getByTestId("menu-item-component")).toBeInTheDocument();
   });
 
   it("should render DrawerHeaderStyled component", () => {
-    expect(wrapper.find(DrawerHeaderStyled)).toHaveLength(1);
+    expect(
+      wrapper.getByTestId("drawer-header-styled-component")
+    ).toBeInTheDocument();
   });
 
   it("should render DrawerStyled component", () => {
-    expect(wrapper.find(DrawerStyled)).toHaveLength(1);
+    expect(wrapper.getByTestId("drawer-styled-component")).toBeInTheDocument();
   });
 });

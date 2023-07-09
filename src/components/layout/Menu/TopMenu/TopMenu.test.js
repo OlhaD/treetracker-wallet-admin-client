@@ -1,4 +1,4 @@
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 import React from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { AppBarStyled, LogoStyled } from "./TopMenuStyled";
@@ -8,7 +8,7 @@ describe("TopMenu component", () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(
+    wrapper = render(
       <TopMenu>
         <div>Test</div>
       </TopMenu>
@@ -20,14 +20,14 @@ describe("TopMenu component", () => {
   });
 
   it("should render AppBarStyled component", () => {
-    expect(wrapper.find(AppBarStyled)).toHaveLength(1);
+    expect(wrapper.getByTestId("app-bar-styled-component")).toBeInTheDocument();
   });
 
   it("should render LogoStyled component", () => {
-    expect(wrapper.find(LogoStyled)).toHaveLength(1);
+    expect(wrapper.getByTestId("logo-styled-component")).toBeInTheDocument();
   });
 
   it("should render LogoutIcon component", () => {
-    expect(wrapper.find(LogoutIcon)).toHaveLength(1);
+    expect(wrapper.getByTestId("logout-icon-component")).toBeInTheDocument();
   });
 });

@@ -39,11 +39,16 @@ const Layout = ({ children }) => {
   return (
     <Box sx={{ display: "flex" }}>
       <Menu
+        data-testid="menu-component"
         open={open}
         handleDrawerClose={handleDrawerClose}
         handleDrawerOpen={handleDrawerOpen}
       />
-      <StyledContent container onClick={handleDrawerCloseAuto}>
+      <StyledContent
+        data-testid="styled-content-component"
+        container
+        onClick={handleDrawerCloseAuto}
+      >
         {children}
       </StyledContent>
     </Box>

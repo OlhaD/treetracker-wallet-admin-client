@@ -1,39 +1,36 @@
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 import React from "react";
 import MenuItem from "./MenuItem";
-import {
-  ItemButtonStyled,
-  ItemIconStyled,
-  LinkItemStyled,
-} from "./MenuItemStyled";
 
-describe("Layout component", () => {
+describe("MenuItem component", () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(
-      <MenuItem>
+    wrapper = render(
+      <MenuItem data-testid="menu-item-component-1">
         <div>Test</div>
       </MenuItem>
     );
   });
 
-  it("should render Layout component", () => {
+  it("should render MenuItem component", () => {
     expect(wrapper).toBeTruthy();
   });
 
   it("should render ItemButtonStyled component", () => {
-    const itemButtons = wrapper.find(ItemButtonStyled);
+    const itemButtons = wrapper.queryAllByTestId(
+      "item-button-styled-component-1"
+    );
     expect(itemButtons.length).toBeGreaterThanOrEqual(1);
   });
 
   it("should render ItemIconStyled component", () => {
-    const itemIcons = wrapper.find(ItemIconStyled);
+    const itemIcons = wrapper.queryAllByTestId("item-icon-styled-component-1");
     expect(itemIcons.length).toBeGreaterThanOrEqual(1);
   });
 
   it("should render LinkItemStyled component", () => {
-    const linkItems = wrapper.find(LinkItemStyled);
+    const linkItems = wrapper.queryAllByTestId("link-item-styled-component-1");
     expect(linkItems.length).toBeGreaterThanOrEqual(1);
   });
 });

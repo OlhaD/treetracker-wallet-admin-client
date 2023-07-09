@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 import { useContext } from "react";
 import ClientRoutes from "./ClientRoutes";
 
@@ -22,7 +22,7 @@ describe("ClientRoutes component", () => {
       isLoggedIn: true,
     });
 
-    const wrapper = shallow(<ClientRoutes />);
-    expect(wrapper.exists()).toBe(true);
+    const { container } = render(<ClientRoutes />);
+    expect(container).toBeInTheDocument();
   });
 });

@@ -13,8 +13,12 @@ const Menu = ({ open, handleDrawerClose, handleDrawerOpen }) => {
   return (
     <>
       <TopMenu handleDrawerOpen={handleDrawerOpen} open={open} />
-      <DrawerStyled variant="permanent" open={open}>
-        <DrawerHeaderStyled>
+      <DrawerStyled
+        data-testid="drawer-styled-component"
+        variant="permanent"
+        open={open}
+      >
+        <DrawerHeaderStyled data-testid="drawer-header-styled-component">
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
@@ -23,7 +27,7 @@ const Menu = ({ open, handleDrawerClose, handleDrawerOpen }) => {
             )}
           </IconButton>
         </DrawerHeaderStyled>
-        <MenuItem open={open} />
+        <MenuItem data-testid="menu-item-component" open={open} />
       </DrawerStyled>
     </>
   );
