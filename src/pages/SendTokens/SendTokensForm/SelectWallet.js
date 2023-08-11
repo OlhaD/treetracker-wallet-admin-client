@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Autocomplete, Button, TextField } from '@mui/material';
 import { getWallets } from '../../../api/wallets';
 
-function SelectWallet({ wallet, onChangeWallet, label, createdWalletName }) {
+function SelectWallet(props) {
+  const { wallet, onChangeWallet, label, createdWalletName, dataTestId } =
+    props;
   const filterLoadMore = 'LOAD_MORE';
 
   const [walletPage, setWalletPage] = useState(0);
@@ -141,7 +143,7 @@ function SelectWallet({ wallet, onChangeWallet, label, createdWalletName }) {
   return (
     <>
       <Autocomplete
-        data-testid="wallet-dropdown"
+        data-testid={dataTestId}
         label="wallet"
         htmlFor="wallet"
         id="wallet"

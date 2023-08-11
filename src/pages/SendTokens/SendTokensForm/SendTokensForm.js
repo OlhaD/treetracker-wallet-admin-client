@@ -113,13 +113,14 @@ const SendTokensForm = (props) => {
 
   return (
     <StyledBox>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} data-testid="send-token-form">
         <Grid container spacing={8}>
           <Grid item xs={6}>
             <SelectWallet
               wallet={senderWallet}
               onChangeWallet={handleChangeSenderWallet}
               label={'Sender Wallet'}
+              dataTestId="sender-wallet"
             />
           </Grid>
           <Grid item xs={6}></Grid>
@@ -129,6 +130,7 @@ const SendTokensForm = (props) => {
               onChangeWallet={handleChangeReceiverWallet}
               label={'Receiver Wallet'}
               createdWalletName={createdWalletName}
+              dataTestId="receiver-wallet"
             />
           </Grid>
           <Grid item xs={4} sx={{ display: 'flex', alignItems: 'center' }}>
@@ -196,6 +198,7 @@ const SendTokensForm = (props) => {
               defaultValue={1}
               inputRef={tokensAmountRef}
               onChange={() => isSubmitButtonDisabled()}
+              data-testid="token-amount"
             />
           </Grid>
           <Grid item xs={12}>
